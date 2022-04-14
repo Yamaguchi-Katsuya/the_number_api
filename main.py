@@ -11,4 +11,5 @@ app.include_router(route_perfect.router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=config('ALLOW_ORIGINS').split(','),
+    allow_methods=['POST', 'GET'],
 )
