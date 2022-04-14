@@ -34,3 +34,19 @@ def prime_list(number: int) -> dict:
         current_number += 1
 
     return {"result": json.dumps(prime_number_list), "count": len(prime_number_list)}
+
+
+@router.get("/prime-factorization/{number}")
+def prime_factorization(number: int) -> dict:
+    prime_factorization = []
+    limit = int(number ** 0.5)
+    for i in range(2, limit + 1):
+        while number % i == 0:
+            number /= i
+            prime_factorization.append(i)
+
+    if  number >= 2:
+        prime_factorization.append(int(number))
+
+    result = ' × ' . join(map(str, prime_factorization))
+    return {"result": result}
